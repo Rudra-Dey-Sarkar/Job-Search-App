@@ -7,11 +7,9 @@ const path = require('path');
 
 
 // Data setup
-mongoose.connect("mongodb://localhost:27017/YourHR",
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    }).then(function () {
+const dbURL = "mongodb+srv://rudradeysarkar2002:rudra9595@yourhr.jba18.mongodb.net/?retryWrites=true&w=majority&appName=YourHR";
+mongoose.connect(dbURL)
+.then(function () {
         console.log("DB Connected")
     }).catch(function (err) {
         console.log(err)
