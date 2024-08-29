@@ -25,7 +25,7 @@ const collection = mongoose.model('collection', mydb);
 
 //Cors data configure
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: '*',
     optionsSuccessStatus: 200
 };
 
