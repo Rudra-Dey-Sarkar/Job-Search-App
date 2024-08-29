@@ -1,0 +1,10 @@
+#First1, #First2, #First3{
+    font-size: 2rem;
+    font-weight: 700;
+    background-color: whitesmoke;
+    color: #525252;
+}
+
+#Job,#Employee,#Career{
+    width: 100%;
+}

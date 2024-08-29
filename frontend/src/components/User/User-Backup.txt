@@ -1,0 +1,52 @@
+import React, { useContext, useState, useEffect } from 'react'
+import { PlatformContext } from '../Global Data/PlatformContext'
+import axios from "axios";
+import "./User.css"
+function User() {
+    const { userData, setUserData } = useContext(PlatformContext);
+    const [pdfs, setPdfs] = useState([]);
+
+
+    // Access and Download PDFs from backend
+    useEffect(() => {
+        axios.get('http://localhost:5000/download')
+            .then(response => {
+                console.log(response.data);
+                setPdfs(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching the PDF list', error);
+            });
+    }, []);
+
+
+    return (
+        <>
+            {userData ? (<div>
+                {userData.map((item, index) => (
+                    <div id='userDataList' key={index}>
+                        <p>Name :- {item.name}</p>
+                        <p>Email :- {item.id}</p>
+                        <p>Password :- {item.password}</p>
+                    </div>
+                ))}
+
+                <div className='attendance-board'>
+                    <h3>Resume</h3>
+                    {pdfs.map((pdf, index) => (
+                        <p key={index}>
+                            <a href={`http://localhost:5000/download/${pdf}`} download>{pdf}</a>
+                        </p>
+                    ))}
+                </div>
+                
+            </div>) : (
+                <div>
+                    <p>Loading Data......</p>
+                </div>
+            )}
+        </>
+    )
+}
+
+export default User
